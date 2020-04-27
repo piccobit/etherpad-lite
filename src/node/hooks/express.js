@@ -73,6 +73,7 @@ exports.restartServer = function () {
 
   app.use(function(req, res, next) {
     res.header("X-Frame-Options", "sameorigin");
+    res.header("Content-Security-Policy", "frame-ancestors 'self' " + settings.csp_allowed_sources + ";");
     if (settings.ssl) {
       // we use SSL
       res.header("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
